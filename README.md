@@ -18,34 +18,69 @@
 Программа протестирована и корректно работает с языками, использующими C-стиль комментариев:
 - **C / C++**, **Java**, **JavaScript / TypeScript**, **Swift**, **PHP**, **Scala**, **Go** и другие.
 
+---
+
 ## Установка
 
-Выберите команду для вашей операционной системы:
+Рекомендую устанавливать программу пошагово, чтобы вы могли контролировать каждый этап процесса (команда для установки находится в последнем [релизе](https://github.com/kandreyss/no-comments/releases/latest)).
 
-### 🐧 Linux (x86-64)
-```bash
-sudo curl -L https://github.com/kandreyss/no-comments/releases/latest/download/no-comments-linux-x64 -o /usr/local/bin/no-comments && sudo chmod +x /usr/local/bin/no-comments
-```
+## 🐧 Linux (x86-64)
 
-### 🍎 macOS
-**Для процессоров Apple Silicon (M1/M2/M3):**
-```bash
-sudo curl -L https://github.com/kandreyss/no-comments/releases/latest/download/no-comments-darwin-arm64 -o /usr/local/bin/no-comments && sudo chmod +x /usr/local/bin/no-comments && xattr -d com.apple.quarantine /usr/local/bin/no-comments
-```
+1. **Скачайте бинарный файл** в текущую папку:
+   ```bash
+   curl -L https://github.com/kandreyss/no-comments/releases/latest/download/no-comments-linux-x64 -o no-comments
+   ```
 
-**Для процессоров Intel:**
-```bash
-sudo curl -L https://github.com/kandreyss/no-comments/releases/latest/download/no-comments-darwin-x64 -o /usr/local/bin/no-comments && sudo chmod +x /usr/local/bin/no-comments && xattr -d com.apple.quarantine /usr/local/bin/no-comments
-```
+2. **Разрешите запуск файла**. В Unix-системах скачанные файлы по умолчанию не имеют прав на выполнение в целях безопасности:
+   ```bash
+   chmod +x no-comments
+   ```
 
-### 🪟 Windows
-1. Скачайте файл `no-comments-windows-x64.exe` со [страницы релизов](https://github.com/kandreyss/no-comments/releases/latest).
-2. Используйте через PowerShell или CMD:
-```powershell
-.\no-comments-windows-x64.exe input.c output.c
-```
+3. **(Опционально) Переместите в системную папку**, чтобы утилита была доступна из любого места (потребуются права администратора):
+   ```bash
+   sudo mv no-comments /usr/local/bin/
+   ```
+   *Если вы не хотите использовать `sudo`, вы можете просто оставить файл в папке с проектом и запускать его как `./no-comments`.*
 
----
+
+
+## 🍎 macOS (Apple Silicon / Intel)
+
+На macOS процесс включает дополнительный шаг, так как система помечает все файлы из интернета флагом «карантина».
+
+1. **Скачайте версию для вашего процессора**:
+   - Для **M1/M2/M3**:
+     ```bash
+     curl -L https://github.com/kandreyss/no-comments/releases/latest/download/no-comments-darwin-arm64 -o no-comments
+     ```
+   - Для **Intel**:
+     ```bash
+     curl -L https://github.com/kandreyss/no-comments/releases/latest/download/no-comments-darwin-x64 -o no-comments
+     ```
+
+2. **Сделайте файл исполняемым**:
+   ```bash
+   chmod +x no-comments
+   ```
+
+3. **Снимите флаг карантина**. Поскольку программа не подписана в Apple Developer Program, macOS заблокирует запуск. Эта команда сообщает системе, что вы доверяете этому файлу:
+   ```bash
+   xattr -d com.apple.quarantine no-comments
+   ```
+
+4. **Переместите в путь доступа**:
+   ```bash
+   sudo mv no-comments /usr/local/bin/
+   ```
+
+## 🪟 Windows (x64)
+
+1. Перейдите на [страницу релизов](https://github.com/kandreyss/no-comments/releases/latest) и скачайте `no-comments-windows-x64.exe`.
+2. Поместите файл в любую папку.
+3. Откройте терминал (PowerShell или CMD) в этой папке и запускайте:
+   ```powershell
+   .\no-comments-windows-x64.exe путь_к_файлу.c
+   ```
 
 ## Сборка из исходников
 
@@ -56,12 +91,12 @@ git clone https://github.com/kandreyss/no-comments.git
 cd no-comments
 make
 ```
-
 ## Удаление (Linux/macOS):
 
 ```bash
 sudo rm /usr/local/bin/no-comments
 ```
+---
 
 ## Использование
 
@@ -74,6 +109,7 @@ no-comments path/to/source.c
 ```bash
 no-comments input.java output.java
 ```
+----
 
 ## Структура репозитория
 
