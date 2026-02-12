@@ -48,10 +48,10 @@
 На macOS процесс включает дополнительный шаг, так как система помечает все файлы из интернета флагом «карантина».
 
 1. **Скачайте версию для вашего процессора**:
-   - Для **M1/M2/M3**:
-     ```bash
-     curl -L https://github.com/kandreyss/no-comments/releases/latest/download/no-comments-darwin-arm64 -o no-comments
-     ```
+   Для **M1/M2/M3**:
+   ```bash
+   curl -L https://github.com/kandreyss/no-comments/releases/latest/download/no-comments-darwin-arm64 -o no-comments
+   ```
      
 2. **Сделайте файл исполняемым**:
    ```bash
