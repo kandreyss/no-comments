@@ -16,55 +16,70 @@
 ## Поддерживаемые языки
 
 Программа протестирована и корректно работает с языками, использующими C-стиль комментариев:
-- **C / C++**
-- **Java**
-- **JavaScript / TypeScript**
-- **Swift**
-- **PHP**
-- **Scala / Go**
-- и другие.
+- **C / C++**, **Java**, **JavaScript / TypeScript**, **Swift**, **PHP**, **Scala**, **Go** и другие.
 
-## Установка:
+## Установка
 
+Выберите команду для вашей операционной системы:
+
+### 🐧 Linux (x86-64)
 ```bash
 sudo curl -L https://github.com/kandreyss/no-comments/releases/latest/download/no-comments-linux-x64 -o /usr/local/bin/no-comments && sudo chmod +x /usr/local/bin/no-comments
 ```
 
-## Сборка
+### 🍎 macOS
+**Для процессоров Apple Silicon (M1/M2/M3):**
+```bash
+sudo curl -L https://github.com/kandreyss/no-comments/releases/latest/download/no-comments-darwin-arm64 -o /usr/local/bin/no-comments && sudo chmod +x /usr/local/bin/no-comments && xattr -d com.apple.quarantine /usr/local/bin/no-comments
+```
 
-Для компиляции программы вам потребуется компилятор `gcc` и утилита `make`.
+**Для процессоров Intel:**
+```bash
+sudo curl -L https://github.com/kandreyss/no-comments/releases/latest/download/no-comments-darwin-x64 -o /usr/local/bin/no-comments && sudo chmod +x /usr/local/bin/no-comments && xattr -d com.apple.quarantine /usr/local/bin/no-comments
+```
+
+### 🪟 Windows
+1. Скачайте файл `no-comments-windows-x64.exe` со [страницы релизов](https://github.com/kandreyss/no-comments/releases/latest).
+2. Используйте через PowerShell или CMD:
+```powershell
+.\no-comments-windows-x64.exe input.c output.c
+```
+
+---
+
+## Сборка из исходников
+
+Если вы хотите собрать программу самостоятельно, вам потребуется `gcc` и `make`.
 
 ```bash
+git clone https://github.com/kandreyss/no-comments.git
+cd no-comments
 make
 ```
 
-После сборки будет создан исполняемый файл `no-comments`.
+## Удаление (Linux/macOS):
+
+```bash
+sudo rm /usr/local/bin/no-comments
+```
 
 ## Использование
 
 ### 1. Перезапись существующего файла (in-place):
-Полезно для быстрой очистки файла.
 ```bash
 no-comments path/to/source.c
 ```
 
 ### 2. Сохранение результата в новый файл:
-Используйте этот метод, если хотите сохранить оригинал.
 ```bash
 no-comments input.java output.java
-```
-
-### 3. Удаление:
-Если вы захотите удалить программу из системы, выполните:
-```bash
-sudo rm /usr/local/bin/no-comments
 ```
 
 ## Структура репозитория
 
 - `no-comments.c` — основной исходный код утилиты.
 - `Makefile` — скрипт для сборки.
-- Папки `cpp/`, `java/`, `swift/`, `php/` и др. — содержат примеры кода на соответствующих языках для тестирования работы парсера.
+- Папки `cpp/`, `java/`, `php/` и др. — примеры кода для тестирования (автоматически исключаются из релизных архивов).
 
 ---
 Разработано [@kandreyss](https://github.com/kandreyss)
