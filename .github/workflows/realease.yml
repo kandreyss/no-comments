@@ -1,0 +1,48 @@
+name: Build and Release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    name: Build for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_name: no-comments-linux-x64
+            extension: ""
+          - os: macos-latest
+            artifact_name: no-comments-darwin-arm64
+            extension: ""
+          - os: macos-13
+            artifact_name: no-comments-darwin-x64
+            extension: ""
+          - os: windows-latest
+            artifact_name: no-comments-windows-x64
+            extension: ".exe"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Compile (Linux/macOS)
+        if: matrix.os != 'windows-latest'
+        run: |
+          gcc -O3 no-comments.c -o ${{ matrix.artifact_name }}${{ matrix.extension }}
+          strip ${{ matrix.artifact_name }}${{ matrix.extension }}
+
+      - name: Compile (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          gcc -O3 no-comments.c -o ${{ matrix.artifact_name }}${{ matrix.extension }}
+          # На Windows strip работает так же, если используется MinGW (gcc)
+
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ matrix.artifact_name }}${{ matrix.extension }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
