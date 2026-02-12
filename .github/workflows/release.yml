@@ -16,32 +16,24 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            artifact_name: no-comments-linux-x64
-            extension: ""
-          - os: macos-latest
-            artifact_name: no-comments-darwin-arm64
-            extension: ""
-          - os: macos-13
-            artifact_name: no-comments-darwin-x64
+            artifact_name: no-comments-linux_x64
             extension: ""
           - os: windows-latest
-            artifact_name: no-comments-windows-x64
+            artifact_name: no-comments-win_x64
             extension: ".exe"
+          - os: macos-latest
+            artifact_name: no-comments-macos-arm64
+            extension: ""
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Compile (Linux/macOS)
-        if: matrix.os != 'windows-latest'
+      - name: Compile
         run: |
           gcc -O3 no-comments.c -o ${{ matrix.artifact_name }}${{ matrix.extension }}
-          if [[ "$OSTYPE" == "linux-gnu"* ]]; then strip ${{ matrix.artifact_name }}; fi
-
-      - name: Compile (Windows)
-        if: matrix.os == 'windows-latest'
-        run: |
-          gcc -O3 no-comments.c -o ${{ matrix.artifact_name }}${{ matrix.extension }}
+          # strip только для Linux
+          if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then strip ${{ matrix.artifact_name }}; fi
 
       - name: Upload to Release
         uses: softprops/action-gh-release@v2
