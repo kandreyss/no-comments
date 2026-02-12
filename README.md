@@ -24,6 +24,12 @@
 - **Scala / Go**
 - и другие.
 
+## Установка:
+
+```bash
+sudo curl -L https://github.com/kandreyss/no-comments/releases/latest/download/no-comments-linux-x64 -o /usr/local/bin/no-comments && sudo chmod +x /usr/local/bin/no-comments
+```
+
 ## Сборка
 
 Для компиляции программы вам потребуется компилятор `gcc` и утилита `make`.
