@@ -43,7 +43,6 @@
    *Если вы не хотите использовать `sudo`, вы можете просто оставить файл в папке с проектом и запускать его как `./no-comments`.*
 
 
-
 ## 🍎 macOS (Apple Silicon / Intel)
 
 На macOS процесс включает дополнительный шаг, так как система помечает все файлы из интернета флагом «карантина».
@@ -53,11 +52,7 @@
      ```bash
      curl -L https://github.com/kandreyss/no-comments/releases/latest/download/no-comments-darwin-arm64 -o no-comments
      ```
-   - Для **Intel**:
-     ```bash
-     curl -L https://github.com/kandreyss/no-comments/releases/latest/download/no-comments-darwin-x64 -o no-comments
-     ```
-
+     
 2. **Сделайте файл исполняемым**:
    ```bash
    chmod +x no-comments
