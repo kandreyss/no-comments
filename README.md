@@ -39,19 +39,20 @@ make
 ### 1. Перезапись существующего файла (in-place):
 Полезно для быстрой очистки файла.
 ```bash
-./no-comments path/to/source.c
+no-comments path/to/source.c
 ```
 
 ### 2. Сохранение результата в новый файл:
 Используйте этот метод, если хотите сохранить оригинал.
 ```bash
-./no-comments input.java output.java
+no-comments input.java output.java
 ```
 
 ### 3. Удаление:
 Если вы захотите удалить программу из системы, выполните:
 ```bash
 sudo rm /usr/local/bin/no-comments
+```
 
 ## Структура репозитория
 
