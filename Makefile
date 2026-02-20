@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -std=c99 -Wall -Wextra -Werror -O3
 
 TARGET = no-comments
-SRC = main.c
+SRC = no-comments.c
 
 .PHONY: all clean
 
